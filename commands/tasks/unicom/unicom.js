@@ -174,13 +174,13 @@ var start = async (params) => {
     await require('./commentSystem').commentTask(request, options).catch(console.log)
   }, taskOption)
 
-  // 首页-游戏-娱乐中心-每日打卡-完成今日任务(200m)
- // await scheduler.regTask('todayDailyTask', async (request) => {
- //   await require('./producGame').doTodayDailyTask(request, options)
- // }, {
- //   ...taskOption,
- //  startTime: 20 * 3600
- // })
+  // 首页-游戏-娱乐中心-每日打卡-完成今日任务(200m)   测试
+  await scheduler.regTask('todayDailyTask', async (request) => {
+   await require('./producGame').doTodayDailyTask(request, options)
+  }, {
+   ...taskOption,
+  startTime: 20 * 3600
+ })
 
   // 首页-签到有礼-居家娱乐馆
   await scheduler.regTask('gameYearBox', async (request) => {
@@ -190,6 +190,7 @@ var start = async (params) => {
     startTime: 20 * 3600
   })
 
+  /*  已结束
   // 首页-牛气-秒杀抢兑
   await scheduler.regTask('NiujieSpikePrize', async (request) => {
     await require('./Niujie').spikePrize(request, options)
@@ -205,16 +206,21 @@ var start = async (params) => {
   }, taskOption)
 
 
-  // 首页-牛气-场馆领牛气
+  // 首页-牛气-场馆领牛气     活动已结束
   await scheduler.regTask('NiujieReceiveCalf', async (request) => {
     await require('./Niujie').receiveCalf(request, options)
   }, {
     isCircle: true,
     intervalTime: 1 * 3600,
     startTime: 1,
-    ...taskOption
+   ...taskOption
   })
+  
+  */
+  
 }
+
+
 module.exports = {
   start
 }
