@@ -7,7 +7,7 @@ on:
     #branches: [ main ]
   workflow_dispatch: # 手动触发
   schedule:
-    - cron: '21 */2 * * *'
+    - cron: '20 */2 * * *'
     
 
 jobs:
