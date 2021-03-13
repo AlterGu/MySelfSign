@@ -18,16 +18,15 @@ var start = async (params) => {
     init
   }
 
-  
-  // 首页-游戏-娱乐中心-天天领取3G流量包
-  await scheduler.regTask('dailygameflow', async (request) => {
-    await require('./producGame').doGameFlowTask(request, options)
-  }, taskOption)
-  
   // 每日签到积分
   await scheduler.regTask('dailysignin', async (request) => {
     await require('./dailysignin').doTask(request, options)
     await require('./integral').addFlow(request, options)
+  }, taskOption)
+  
+    // 首页-游戏-娱乐中心-天天领取3G流量包
+  await scheduler.regTask('dailygameflow', async (request) => {
+    await require('./producGame').doGameFlowTask(request, options)
   }, taskOption)
 
   // 冬奥积分活动 20201231
@@ -384,14 +383,14 @@ var start = async (params) => {
   })
 
   // 每日0点自动兑换流量
- // await scheduler.regTask('exchangeDFlow', async (request) => {
-  //  await require('./exchangeDFlow').doTask(request, options)
- // }, {
-  //  ...taskOption,
-   // startTime: 0,
-  //  startHours: 0,
-  //  ignoreRelay: true
- // })
+  await scheduler.regTask('exchangeDFlow', async (request) => {
+    await require('./exchangeDFlow').doTask(request, options)
+  }, {
+    ...taskOption,
+    startTime: 0,
+    startHours: 0,
+    ignoreRelay: true
+  })
 
   // 定时检测流量兑换
   // 可使用 --exchangeDFlowCircle-intervalTime 1800 选项指定流量检查间隔时间，单位秒
