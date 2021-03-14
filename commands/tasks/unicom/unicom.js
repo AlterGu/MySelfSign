@@ -23,11 +23,6 @@ var start = async (params) => {
     await require('./dailysignin').doTask(request, options)
     await require('./integral').addFlow(request, options)
   }, taskOption)
-  
-    // 首页-游戏-娱乐中心-天天领取3G流量包
-  await scheduler.regTask('dailygameflow', async (request) => {
-    await require('./producGame').doGameFlowTask(request, options)
-  }, taskOption)
 
   // 冬奥积分活动 20201231
   await scheduler.regTask('winterTwo', async (request) => {
@@ -204,6 +199,11 @@ var start = async (params) => {
   await scheduler.regTask('producGameSignin', async (request) => {
     await require('./producGame').gameBox(request, options)
     await require('./producGame').gameSignin(request, options)
+  }, taskOption)
+
+  // 首页-游戏-娱乐中心-天天领取3G流量包
+  await scheduler.regTask('dailygameflow', async (request) => {
+    await require('./producGame').doGameFlowTask(request, options)
   }, taskOption)
 
   // 首页-积分查询-游戏任务
