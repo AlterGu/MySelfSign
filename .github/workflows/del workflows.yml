@@ -1,15 +1,15 @@
 name: Delete old workflow runs
 on:
   workflow_dispatch:
-    inputs:
-      days: #要保留的天数
-        description: 'Number of days.'
-        #required: true
-        default: 1
-      runs: #要为每个yml保留的个数
-        description: 'Number of runs.'
-        #required: true
-        default: 0
+    # inputs:
+    days: #要保留的天数
+      description: 'Number of days.'
+      #required: true
+      default: 1
+    runs: #要为每个yml保留的个数
+      description: 'Number of runs.'
+      #required: true
+      default: 0
      
     schedule:
         - cron: '11 18 * * *'
