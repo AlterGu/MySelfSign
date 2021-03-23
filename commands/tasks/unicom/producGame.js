@@ -133,8 +133,9 @@ var producGame = {
             let hashInBase64 = CryptoJS.enc.Base64.stringify(Signature);
 
             let res = await axios.request({
+                // change "user-agent": "okhttp/4.4.0"
                 headers: {
-                    "user-agent": "okhttp/4.4.0"
+                    "user-agent": "Mozilla/5.0 (Linux; Android 9; MI 6 Build/PKQ1.190118.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.198 Mobile Safari/537.36; unicom{version:android@8.0100,desmobile:13043608498};devicetype{deviceBrand:Xiaomi,deviceModel:MI 6};{yw_code:}"
                 },
                 jar: null,
                 url: `https://q.qq.com/mini/OpenChannel?Action=input&Nonce=${Nonce}&PlatformID=2001&SignatureMethod=HmacSHA256&Timestamp=${Timestamp}&Signature=${hashInBase64}`,
@@ -351,6 +352,8 @@ var producGame = {
             method: 'post',
             data: transParams(params)
         })
+        
+        /* change
         if (data.code === '0000') {
             // reachState 0未完成, 1未领取, 2已完成
             return {
@@ -360,7 +363,8 @@ var producGame = {
         } else {
             console.error('获取游戏任务失败')
             return {}
-        }
+        }*/
+        
     },
     doGameFlowTask: async (axios, options) => {
         let { popularList: allgames, jar } = await producGame.popularGames(axios, options)
@@ -407,7 +411,8 @@ var producGame = {
             await new Promise((resolve, reject) => setTimeout(resolve, (Math.floor(Math.random() * 10) + 15) * 1000))
             await producGame.gameFlowGet(axios, {
                 ...options,
-                gameId: game.gameId
+                // change from game.gameId to game.Id
+                gameId: game.Id
             })
         }
     },
