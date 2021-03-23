@@ -353,7 +353,7 @@ var producGame = {
             data: transParams(params)
         })
         
-        /* change
+        
         if (data.code === '0000') {
             // reachState 0未完成, 1未领取, 2已完成
             return {
@@ -363,13 +363,14 @@ var producGame = {
         } else {
             console.error('获取游戏任务失败')
             return {}
-        }*/
+        }
         
     },
     doGameFlowTask: async (axios, options) => {
         let { popularList: allgames, jar } = await producGame.popularGames(axios, options)
-        let games = await producGame.timeTaskQuery(axios, options)
-        games = allgames.filter(g => games.filter(g => g.state === '0').map(i => i.gameId).indexOf(g.id) !== -1)
+        //let games = await producGame.timeTaskQuery(axios, options)
+        //games = allgames.filter(g => games.filter(g => g.state === '0').map(i => i.gameId).indexOf(g.id) !== -1)
+        games = allgames.filter(g => g.state === '0')
         console.info('剩余未完成game', games.length)
         let queue = new PQueue({ concurrency: 2 });
 
