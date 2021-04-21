@@ -360,8 +360,9 @@ var producGame = {
     },
     doGameFlowTask: async (axios, options) => {
         let { popularList: allgames, jar } = await producGame.popularGames(axios, options)
-      let games = allgames
-        console.info('苏念修复补丁正在运行✅')
+        games = allgames.filter(g => g.state === '0')
+        //let games = allgames
+        // console.info('苏念修复补丁正在运行✅')
         console.info('剩余未完成game', games.length)
         let queue = new PQueue({ concurrency: 2 });
 
